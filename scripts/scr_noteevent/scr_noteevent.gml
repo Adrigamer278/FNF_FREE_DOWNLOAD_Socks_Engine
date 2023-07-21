@@ -87,8 +87,6 @@ function scr_noteevent(argument0, argument1) {
 	            break;
 	            case 11: //cool sprites
 	                scr_charset(5,-6);
-					with(obj_player)
-						sprite_index = idle[0]
 	                obj_song.event++
 	                obj_song.mm=0
 	                obj_song.mmm=0
@@ -195,7 +193,6 @@ function scr_noteevent(argument0, argument1) {
 	                obj_nermal.mode="walkr"
 	            break;
 	            case 8: //nermal jumpscare
-					obj_song.offHud = true;
 	                instance_create(200,200,obj_nermaljump)
 	            break;
 	            //10 dude bomb notes
@@ -262,10 +259,6 @@ function scr_noteevent(argument0, argument1) {
 	    break;
 	    case mus_frostbytep1:
 	        switch(event) {
-				case 0:
-					if(obj_stats.fullscreen)
-						obj_stats.fullscreen = false
-				break;
 	            case 2:
 	                instance_create(0,0,obj_fadein)
 	                obj_fadein.time=0.02
@@ -288,9 +281,8 @@ function scr_noteevent(argument0, argument1) {
 	            case 13:
 	                //instance_destroy(obj_midi_clock);
 	                with(obj_song) {
-						lol=window_get_x();
-						lol2=window_get_y();
-		
+						lol = window_get_x();
+						lol2 = window_get_y();
 	                    instance_destroy(obj_uinotes) //so theres no duplicates
 	                    instance_destroy(obj_note)
 	                    audio_stop_sound(songplaying)
@@ -301,7 +293,7 @@ function scr_noteevent(argument0, argument1) {
 	                    } else {
 	                        y=352
 	                    }
-	                    scr_songint(-2.1); //load part 2
+	                    scr_songint(-1.1); //load part 2
 	                    obj_badguy.everybeat=1
 	                    songplaying=audio_play_sound(mus_frostbytep2,9999,false) //lpay new song
 	                }
@@ -352,33 +344,9 @@ function scr_noteevent(argument0, argument1) {
 	        }
 	        obj_song.event=event+1 //dont ask why this is different then all the other ones lol
 	    break;
-		case mus_dreams:
-			switch(event) 
-			{
-				case 0:
-					with(obj_camera) {
-						xgo[2]=466
-						ygo[2]=84
-						big[2]=300
-	                }
-				break;
-				case 1:
-					obj_song.mmmm=0
-				break;
-				case 2:
-					with(obj_camera) {
-						xgo[2]=450
-						ygo[2]=350
-						big[2]=600
-	                }
-				break;
-			}
-		obj_song.event=event+1 //Wtf WHY?
-		break;
 	    case mus_w1s1:
 	        switch(event) {
 	            case 0:
-					//instance_create(244, 368, obj_lady)
 	                instance_create(0,0,obj_fadeout)
 	                obj_fadeout.color=c_white
 	                obj_fadeout.roomable=false
@@ -696,11 +664,6 @@ function scr_noteevent(argument0, argument1) {
 	                scr_charset(4,4)
 	                //obj_badguy.framerate=0.25
 	                //obj_player.framerate=0.25
-					with(obj_player)
-					{
-						sprite_index = idle[0]
-					}
-					
 	                obj_badguy.anim[1]=spr_buddyholdanime
 	                obj_badguy.anim[2]=spr_buddygrabanime
 	                obj_badguy.pause=spr_buddypauseanime
@@ -709,10 +672,6 @@ function scr_noteevent(argument0, argument1) {
 	                //obj_badguy.framerate=0.5
 	                //obj_player.framerate=0.5
 	                scr_charset(0,4)
-					with(obj_player)
-					{
-						sprite_index = idle[0]
-					}
 	            break;
 	            case 34:
 	                if obj_song.skill>65 {
@@ -828,8 +787,6 @@ function scr_noteevent(argument0, argument1) {
 	            break;
 	            case 9:
 	                scr_charset(0,5.1)
-					with(obj_badguy)
-						sprite_index = idle[0]
 	                obj_song.event++
 	                obj_song.mm="nothing"
 	                with(obj_camera) {
@@ -928,4 +885,7 @@ function scr_noteevent(argument0, argument1) {
 	        obj_song.event=event+1
 	    break;
 	}
+
+
+
 }

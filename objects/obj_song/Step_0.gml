@@ -1,3 +1,5 @@
+//trace(song, typeof(song))
+
 //pause
 if ((keyboard_check_pressed(ord("z")) or keyboard_check_pressed(vk_escape) or keyboard_check_pressed(vk_enter) or gamepad_button_check_pressed(0,gp_start)) && instance_exists(obj_midi_clock) && songpos>0.1) {
     audio_play_sound(snd_recordscratch,9999,false)
@@ -93,8 +95,6 @@ if window_has_focus() {
             }   
         }
 		
-		if(obj_stats.weekgoing != "HelicopterSong")
-			obj_stats.songnew[category][obj_stats.weekgoing-obj_stats.mini]=false
         //where to go
         if obj_stats.freeplay = false {
             if !instance_exists(obj_fadeout){

@@ -354,6 +354,22 @@ function scr_songint(argument0) {
 	            screen[tv,1]=0
 	        }
 	    break;
+		case "fnaf": //?????????
+			song=scr_loadFromFile("fnaf"); 
+			trace(audio_get_type(song))
+	        //background
+	        obj_backgroundp1.sprite_index=spr_busback;
+	        //positioning
+	        obj_player.x=320
+	        obj_player.y=320
+	        obj_badguy.x=64
+	        obj_badguy.y=320
+	        obj_lady.x=128
+	        obj_lady.y=160
+	        //sprites
+	        scr_charset(0, 0)
+	        obj_lady.sprite_index=spr_tutorialbackguys
+	    break;
 	    }
 	} else {
 	        //background
@@ -372,19 +388,20 @@ function scr_songint(argument0) {
 	}
 	
 	//song
-	filename=(string(working_directory)+string("songs\\")+string(audio_get_name(song))+string(".swows"))
-	
-	trace(song, obj_stats.weekgoing)
-	
-	jsonname=(string(working_directory)+string("songs\\")+string(audio_get_name(song))+string(".json"))
+	if(audio_get_name(song) != "<undefined>")
+		filename=(string(working_directory)+string("songs\\")+string(audio_get_name(song))+string(".swows"))
+	else
+		filename=(string(working_directory)+string("songs\\")+global.custom_audio_filenames+string(".swows"))
+		
+	//jsonname=(string(working_directory)+string("songs\\")+string(audio_get_name(song))+string(".json"))
 	
 	//Check if this song exist in CHART 900 format
 	if(file_exists(filename))
 	{
 		//filename=(string(working_directory)+string("/songs/mus_rainbowtylenol.swows"))
 		file = file_text_open_read(filename)
-		obj_song.song=asset_get_index((file_text_read_string(file)))
-		//obj_song.song = song
+		//obj_song.song=asset_get_index((file_text_read_string(file)))
+		obj_song.song = song
 		file_text_readln(file)
 		obj_song.bpm=file_text_read_real(file)
 		file_text_readln(file)

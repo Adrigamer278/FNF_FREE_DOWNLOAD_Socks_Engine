@@ -362,6 +362,7 @@
     {"name":"spr_tutcutscene","order":2,"path":"sprites/spr_tutcutscene/spr_tutcutscene.yy",},
     {"name":"spr_sumcutscene2","order":1,"path":"sprites/spr_sumcutscene2/spr_sumcutscene2.yy",},
     {"name":"spr_starscutscene1","order":2,"path":"sprites/spr_starscutscene1/spr_starscutscene1.yy",},
+    {"name":"scr_loadFromFile","order":29,"path":"scripts/scr_loadFromFile/scr_loadFromFile.yy",},
     {"name":"spr_gndcutscene2","order":1,"path":"sprites/spr_gndcutscene2/spr_gndcutscene2.yy",},
     {"name":"spr_gjcutscene1","order":2,"path":"sprites/spr_gjcutscene1/spr_gjcutscene1.yy",},
     {"name":"spr_weeknd2_e","order":3,"path":"sprites/spr_weeknd2_e/spr_weeknd2_e.yy",},

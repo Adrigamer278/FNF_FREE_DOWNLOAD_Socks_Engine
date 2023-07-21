@@ -152,4 +152,6 @@ randomize()
 randomMenuSong = 0
 botplay = false
 save = true
+
 global.deactivated_instances = ds_list_create();
+global.custom_audio_filenames = 0;

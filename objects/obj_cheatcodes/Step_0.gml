@@ -32,14 +32,15 @@ if string_copy(keys,string_length(keys)-6,string_length(keys))="rainbow" {
     string_delete(keys,0,6)
 }
 
-if string_copy(keys,string_length(keys)-1,string_length(keys))="aa" {
-    obj_stats.weekgoing="disab"
+if string_copy(keys,string_length(keys)-3,string_length(keys))="fnaf" {
+    obj_stats.weekgoing="fnaf"
     obj_stats.freeplay=false
     instance_create(0,0,obj_fadeout)
     obj_fadeout.roomgo=rm_stage
     audio_stop_sound(asset_get_index("mus_menu" + string(obj_stats.randomMenuSong)))
-    string_delete(keys,0,6)
+    string_delete(keys,0,3)
 }
+
 
 if string_copy(keys,string_length(keys)-4,string_length(keys))="chart"{
     audio_stop_all();
