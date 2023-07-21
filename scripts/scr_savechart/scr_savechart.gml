@@ -4,7 +4,12 @@ function scr_savechart(argument0) {
 	//filename=string(argument0)+string(".swows")
 	file=file_text_open_write(filename)
 	//save that stuff
-	file_text_write_string(file,audio_get_name(obj_charting.song))
+	trace(audio_get_name(obj_charting.song))
+	if(audio_get_name(obj_charting.song) == "<undefined>")
+		file_text_write_string(file, obj_stats.songName)
+	else
+		file_text_write_string(file,audio_get_name(obj_charting.song))
+		
 	file_text_writeln(file)
 	file_text_write_string(file,obj_charting.bpm)
 	file_text_writeln(file)
@@ -18,7 +23,7 @@ function scr_savechart(argument0) {
 	var bb;
 	for (bb=0; bb<obj_charting.notes*2; bb++) {
 	    for (b=0; b<songlong; b++) {
-	        file_text_write_string(file,obj_charting.note[bb,b])
+	        file_text_write_string(file,obj_charting.grid[# bb,b])
 	        file_text_writeln(file)
 	    }
 	}

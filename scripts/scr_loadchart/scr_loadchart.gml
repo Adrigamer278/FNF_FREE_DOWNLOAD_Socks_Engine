@@ -16,7 +16,7 @@ function scr_loadchart(argument0) {
 		var bb;
 		for (bb=0; bb<obj_charting.notes*2; bb++) {
 		    for (b=0; b<songlong; b++) {
-		        obj_charting.note[bb,b] = file_text_read_real(file)
+		        obj_charting.grid[# bb,b] = file_text_read_real(file)
 		        file_text_readln(file)
 		    }
 		}

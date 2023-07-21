@@ -1,4 +1,12 @@
-/// @description controlls + stuff
+/// @description controlls + stuff 
+
+//It would be cool if I wrote down the id of only one obj_notespace from (notes * 2) and when only one is loaded, 
+//the rest would be loaded, but I think that's enough for now
+scr_deactivate_obj(obj_notespace);
+
+if(alarm[0] < 0)
+	alarm[0] = 10
+
 //play the song
 if keyboard_check_pressed(vk_enter) or keyboard_check_pressed(vk_space) {
     if songpos=-1 or (!audio_is_playing(songplaying) && !audio_is_paused(songplaying)){
@@ -12,30 +20,24 @@ if keyboard_check_pressed(vk_enter) or keyboard_check_pressed(vk_space) {
         }
     }
 }
+
+
 if songpos>-1 {
 //moving through song
-if keyboard_check_pressed(vk_left) or mouse_wheel_up() {
+if keyboard_check_pressed(vk_up) or mouse_wheel_up() {
     songpos-=audio_sound_length(songplaying)/songlong
     audio_sound_set_track_position(songplaying,songpos)
 }
-if keyboard_check_pressed(vk_right) or mouse_wheel_down() {
+if keyboard_check_pressed(vk_down) or mouse_wheel_down() {
     songpos+=audio_sound_length(songplaying)/songlong
     audio_sound_set_track_position(songplaying,songpos)
 }
 //MAAATH
     songpos=audio_sound_get_track_position(songplaying)
-    y=-(songpos/60*bpm*4)*16
+    yy =(songpos/60*bpm*4)*16
+	camera_set_view_pos(view_camera[0], 0, yy);
 }
 
-//saving
-    /*
-	if keyboard_check_pressed(ord("S")) {
-        scr_savechart(audio_get_name(song));
-    }
-    if keyboard_check_pressed(ord("L")) {
-        scr_loadchart(audio_get_name(song));
-    }
-	*/
 if (songWrite)
 {
 	//keyboard_string = ""

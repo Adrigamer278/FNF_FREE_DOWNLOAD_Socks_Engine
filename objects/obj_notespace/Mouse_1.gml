@@ -1,1 +1,1 @@
-obj_charting.note[row, spif] = 0
+obj_charting.grid[# row, spif] = 0

@@ -1,6 +1,5 @@
 //debug
 debug=false
-//show_debug_overlay(1)
 //options
 screenscale=4
 downscroll=false
@@ -145,11 +144,12 @@ scr_skinint(skin)
 //lines for charter
 songFile = mus_w3s2
 bpm = 140
+songName = "";
 
-//AykoTanStaff
+//Engine fun
 funnyNotePos = false
 randomize()
 randomMenuSong = 0
 botplay = false
 save = true
-
+global.deactivated_instances = ds_list_create();

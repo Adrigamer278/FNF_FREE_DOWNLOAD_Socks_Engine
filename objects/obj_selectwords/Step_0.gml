@@ -1,4 +1,4 @@
-if (selection)
+if (selection) && (obj_stats.save)
 {
 	if(keyboard_check_pressed(vk_down) or gamepad_button_check_pressed(0,gp_padd))
 		sel++

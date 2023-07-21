@@ -1,1 +1,1 @@
-obj_charting.note[row, spif] = type
+obj_charting.grid[# row, spif] = type
