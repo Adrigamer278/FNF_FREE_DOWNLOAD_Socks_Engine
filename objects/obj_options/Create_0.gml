@@ -7,9 +7,9 @@ enum MENU_STATE
 }
 
 if obj_stats.fullscreen
-	sels=6 //I mean i dunno I might want to add more some day lol (I did)
+	sels=7 //I mean i dunno I might want to add more some day lol (I did)
 else
-	sels=5
+	sels=6
 sel=0
 mappingkeys=false
 changingskin=false

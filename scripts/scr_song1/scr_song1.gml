@@ -1,5 +1,6 @@
 //Summer
 function scr_song1(){
+	
 	var colorsky=make_colour_rgb(232,183,108)
         //drawing stuff
         //(this part isn't a switch because I needed an "or" statement lol)
@@ -36,8 +37,7 @@ function scr_song1(){
                 }
                 with(obj_lady) {
                     image_alpha=0
-                    obj_song.drawgirl=false
-                    var wump
+                    drawgirl=false
                     draw_sprite(sprite_index,image_index,x,y)
                     draw_sprite_ext(sprite_index,image_index,x,y,1,1,0,colorsky,0.8)
                     draw_sprite_ext(sprite_index,image_index,x,y+4,1,1,0,c_black,0.4)

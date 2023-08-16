@@ -2,8 +2,8 @@
 
 function scr_song3(){
 	if obj_song.paused=false {
-            obj_song.m+=1
-            obj_song.mm+=0.25
+            obj_song.m+=1 * global.delta_multiplier 
+            obj_song.mm+=0.25 * global.delta_multiplier 
             if obj_song.m>=344 {
                 obj_song.m=0
             }
@@ -14,7 +14,7 @@ function scr_song3(){
                 obj_song.mmm=1196
             }
             if obj_song.event>=4 {
-                obj_song.mmm+=4
+                obj_song.mmm+=4 * global.delta_multiplier 
             }
         }
         draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,make_color_rgb(192,192,192),1)
@@ -72,7 +72,7 @@ function scr_song3(){
         break;
         case 5: //cyan turn
             //background
-            obj_song.mmmm+=0.025
+            obj_song.mmmm+=0.025 * global.delta_multiplier 
             if obj_badguy.sprite_index!=obj_badguy.idle[0] && obj_badguy.image_index<3 {
                 obj_song.mmmm=0
             }
@@ -144,7 +144,7 @@ function scr_song3(){
         break;
         case 6: //dude turn
             //background
-            obj_song.mmmm+=0.025
+            obj_song.mmmm+=0.025 * global.delta_multiplier 
             if obj_player.sprite_index!=obj_badguy.idle[0] && obj_player.image_index<3 {
                 obj_song.mmmm=0
             }
@@ -215,7 +215,7 @@ function scr_song3(){
         break;
         case 7: //dude turn
             //background
-            obj_song.mmmm+=0.025
+            obj_song.mmmm+=0.025 * global.delta_multiplier 
             with(obj_backgroundp1) {
                 var i;
                 var ii;
@@ -309,7 +309,7 @@ function scr_song3(){
         //DANCE TIME!!
         if obj_song.event=2 {
             var poop = sin(current_time/200)*2
-            draw_sprite_ext(spr_dancebreak,poop,obj_camera.x,obj_camera.y-100,1,1,0,c_black,1)
+            draw_sprite_ext(spr_dancebreak,poop * global.delta_multiplier ,obj_camera.x,obj_camera.y-100,1,1,0,c_black,1)
             draw_sprite(spr_dancebreak,0,obj_camera.x,(obj_camera.y-100)+poop)
         }
         //CYAN
@@ -364,7 +364,7 @@ function scr_song3(){
 			if instance_exists(obj_midi_clock) {
 	            if obj_midi_clock.div_4_trigger=true {
 	                obj_camera.image_xscale=obj_camera.image_xscale-10
-	                obj_song.mmmmmm++
+	                obj_song.mmmmmm += 1 * global.delta_multiplier 
 	                if obj_song.mmmmmm%2=0 {
 	                    obj_camera.image_angle=1
 	                } else {

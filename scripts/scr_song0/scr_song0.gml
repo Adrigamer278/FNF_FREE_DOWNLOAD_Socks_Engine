@@ -47,7 +47,7 @@ function scr_song0(){
             case 0:
             break;
             case 1:
-                obj_song.m+=0.05
+                obj_song.m+=0.05 * global.delta_multiplier 
                 //set text values
                 draw_set_font(fnt_tutorial)
                 draw_set_valign(fa_middle)
@@ -71,8 +71,8 @@ function scr_song0(){
                 draw_set_font(fnt_comic1)
             break;
             case 2:
-                obj_song.m+=0.05
-                obj_song.mm+=0.05
+                obj_song.m+=0.05 * global.delta_multiplier 
+                obj_song.mm+=0.05 * global.delta_multiplier 
                 //set text values
                 draw_set_font(fnt_tutorial)
                 draw_set_valign(fa_middle)
@@ -107,8 +107,8 @@ function scr_song0(){
                 draw_set_font(fnt_comic1)
             break;
             case 3:
-                obj_song.m-=0.05
-                obj_song.mm-=0.05
+                obj_song.m-=0.05 * global.delta_multiplier 
+                obj_song.mm-=0.05 * global.delta_multiplier 
                 obj_song.m=clamp(obj_song.m,0,1)
                 obj_song.mm=clamp(obj_song.mm,0,1)
                 //set text values
@@ -229,12 +229,12 @@ function scr_song0(){
                 if obj_badguy.image_index=1 {
                     obj_song.mmm=1
                 } else {
-                    obj_song.mmm-=0.05
+                    obj_song.mmm-=0.05 * global.delta_multiplier 
                 }
                 if (obj_player.image_index>=0 && obj_player.image_index<=2 && obj_player.sprite_index != obj_player.idle[0]) {
                     obj_song.mmmm=1
                 } else {
-                    obj_song.mmmm-=0.05
+                    obj_song.mmmm-=0.05 * global.delta_multiplier 
                 }
                 //draw text
                 //set text values

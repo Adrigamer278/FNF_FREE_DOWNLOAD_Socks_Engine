@@ -5,6 +5,7 @@ screenscale=4
 downscroll=false
 readable=false
 skin=0
+in_game_fps = 60;
 
 volume=1
 //4 key
@@ -103,7 +104,6 @@ fullscreen=0 //sorry me Tyler
 category = 0 //In wich category in freeplay you go
 select = 0 //Wich song you choose
 scr_loadoptions();
-
 //create lady's font
 fnt_lady = font_add_sprite_ext(spr_ladyfont," qwertyuiopasdfghjklzxcvbnm",false,0)
 
@@ -155,3 +155,7 @@ save = true
 
 global.deactivated_instances = ds_list_create();
 global.custom_audio_filenames = 0;
+
+reg_fps = 1/60
+global.actual_delta = delta_time/1000000;
+global.delta_multiplier = global.actual_delta/reg_fps;

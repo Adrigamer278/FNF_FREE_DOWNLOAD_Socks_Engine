@@ -59,11 +59,7 @@ if window_has_focus() {
 //mcdonalds
     if keyboard_check_pressed(ord("9")) or gamepad_button_check_pressed(0,gp_shoulderl){
         mcdonalds=!mcdonalds
-        if mcdonalds=false {
-            playericon=spr_momgotmcdonalds
-        } else {
-            playericon=spr_dudeicon
-        }
+		playericon = mcdonalds ? spr_dudeicon : spr_momgotmcdonalds;
     }
     //notes funny
     if notes>4 {
@@ -77,8 +73,11 @@ if window_has_focus() {
         } else {
             y=+(songpos/60*bpm*4)*(spacey*notespeed)
     }
+	//funny
+	audio_sound_pitch(songplaying, pitch);
 //game over
     if skill>=100 {
+		game_set_speed(60, gamespeed_fps);
         room_goto(rm_gameover)
     }
 //end song
@@ -90,11 +89,12 @@ if window_has_focus() {
                 obj_stats.songscore[obj_stats.category][obj_stats.select]=coolscore
                 obj_stats.songmiss[obj_stats.category][obj_stats.select]=misses
 				obj_stats.songaccuracy[obj_stats.category][obj_stats.select]=accuracy
+				obj_stats.songnew[obj_stats.category][obj_stats.select]=false;
                 scr_saveoptions();
                 saved=true
             }   
         }
-		
+		game_set_speed(60, gamespeed_fps);
         //where to go
         if obj_stats.freeplay = false {
             if !instance_exists(obj_fadeout){
@@ -114,3 +114,4 @@ if window_has_focus() {
     }
 }
 
+accuracy = string(min(1, max(0, totalHitNote / totalNote)) * 100)

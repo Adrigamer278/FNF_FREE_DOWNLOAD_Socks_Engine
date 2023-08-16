@@ -15,54 +15,44 @@ var rang;
 //	rang = 1
 //else if()
 
-var distance = obj_note.y - obj_uinotes.y
+var distance = obj_note.y - obj_uinotes.y;
 
-if distance <= 4
+if distance <= 6
 	rang = 1
-else if distance <= 4
+else if distance >= 7 && distance <= 10
 	rang = 0.75
-else if distance <= 12
+else if distance >= 11 && distance <= 14
 	rang = 0.5
-else if distance <= 24
+else if distance >= 25 && distance <= 24
 	rang = 0.25
 else
 	rang = 0.2
 
+//bool var
+var checkNoteGoesOffScreen = obj_stats.downscroll ? y >= 500 : y <= -60;
+
+
 //note goes off screen
-if obj_stats.downscroll=false {
-    if (y <= -60 && (type=1 or type=2 or type=8 or type=9) && note >= obj_song.notes) {
-        instance_destroy();
-		obj_song.skill+=lose
-		obj_song.totalNote += 1
-        obj_song.misses+=1
-		obj_player.dudeStunCount = 1/60
-        obj_song.flow-=0.1
-        obj_song.coolscore-=50
-    }
-} else {
-    if (y >= 500 && (type=1 or type=2 or type=8 or type=9) && note >= obj_song.notes) {
-        instance_destroy();
-        obj_song.skill+=lose
-		obj_player.dudeStunCount = 1/60
-        obj_song.misses+=1
-		obj_song.totalNote += 1
-        obj_song.flow-=0.1
-        obj_song.coolscore-=50
-    }
+if (checkNoteGoesOffScreen && (type=1 || type=2 || type=8 || type=9) && note >= obj_song.notes) {
+	instance_destroy();
+	obj_song.skill+=lose
+	obj_song.totalNote += 1
+    obj_song.misses+=1
+	obj_player.dudeStunCount = 1/60
+    obj_song.flow-=0.1
+    obj_song.coolscore-=50
 }
 //event
-if type = 10 {
-    if obj_stats.downscroll=false {
-        if y<=obj_uinotes.y {
-            scr_noteevent(obj_song.song,event);
-            instance_destroy();
-        }
-    } else {
-        if y>=obj_uinotes.y {
-            scr_noteevent(obj_song.song,event);
-            instance_destroy();
-        }
-    }
+if (type == 10) {
+	
+	var noteCheck = obj_stats.downscroll ? y>=obj_uinotes.y : y<=obj_uinotes.y;
+	
+	if(noteCheck){
+		
+		scr_noteevent(obj_song.song,event);
+        instance_destroy();	
+	}
+	
 }
 //hitting notes
 if note < obj_song.notes { //enemy
@@ -109,7 +99,7 @@ if note < obj_song.notes { //enemy
                 obj_badguy.sprite_index=obj_badguy.anim[((note)+chungy)]
                 obj_badguy.hit[note]=true
                 if obj_song.weeknd3=true && obj_song.skill<95 {
-                    obj_song.skill+=2.5*obj_song.weeknd3m
+                    obj_song.skill+=(2.5*obj_song.weeknd3m) * global.delta_multiplier
                 }
             break;
         }
@@ -137,16 +127,7 @@ if note < obj_song.notes { //enemy
         //pressing note
         switch(type) {
             default: //normal note
-			if(obj_stats.botplay)
-			{
-				obj_player.sprite_index=obj_player.anim[((note-obj_song.notes)+chungy)]
-                obj_player.hit[(note-obj_song.notes)]=true
-                obj_song.skill-=win
-                obj_song.flow+=0.05
-                obj_song.coolscore+=100
-                instance_destroy();  
-			}
-            if keyboard_check_pressed((obj_stats.bind[note-obj_song.notes])+plus) or gamepad_button_check_pressed(0,(obj_stats.bind[note-obj_song.notes+4])) {
+            if obj_stats.botplay || keyboard_check_pressed((obj_stats.bind[note-obj_song.notes])+plus) or gamepad_button_check_pressed(0,(obj_stats.bind[note-obj_song.notes+4])) {
 				obj_player.sprite_index=obj_player.anim[((note-obj_song.notes)+chungy)]
                 obj_player.hit[(note-obj_song.notes)]=true
                 obj_song.skill-=win
@@ -154,6 +135,12 @@ if note < obj_song.notes { //enemy
                 obj_song.coolscore+=100
 				obj_song.totalNote += 1
 				obj_song.totalHitNote += rang
+				
+				if(rang == 1){
+					with(instance_create(id.x, obj_uinotes.y,obj_noteFlash))
+						frame = 0;
+				}
+					
                 instance_destroy();  
             }
             break;
@@ -169,17 +156,8 @@ if note < obj_song.notes { //enemy
                     obj_song.coolscore-=200
                     randomize();
                     var randomsound=round(random(2))
-                    switch(randomsound) {
-                        case 0:
-                            audio_play_sound(snd_bomb1,9999,false)
-                        break;
-                        case 1:
-                            audio_play_sound(snd_bomb2,9999,false)
-                        break;
-                        case 2:
-                            audio_play_sound(snd_bomb3,9999,false)
-                        break;
-                    }
+					var bombSND = asset_get_index("snd_bomb" + string(randomsound));
+					audio_play_sound(bombSND, 99999, false);
                     instance_destroy();
                 }
                 scr_bombevent(obj_song.song,note);
@@ -209,16 +187,7 @@ if note < obj_song.notes { //enemy
                 instance_destroy();  
             break;
             case 8: //hold
-			if(obj_stats.botplay)
-			{
-				obj_player.sprite_index=obj_player.anim[(note-obj_song.notes+chungy)]
-                //obj_player.hit[(note-obj_song.notes)]=true
-                obj_player.frame=0
-                obj_song.skill-=1
-                obj_song.coolscore+=25
-                instance_destroy();  
-			}
-            if keyboard_check(obj_stats.bind[note-obj_song.notes]) or gamepad_button_check(0,(obj_stats.bind[note-obj_song.notes+4])) {
+            if obj_stats.botplay || keyboard_check(obj_stats.bind[note-obj_song.notes]) or gamepad_button_check(0,(obj_stats.bind[note-obj_song.notes+4])) {
                 obj_player.sprite_index=obj_player.anim[(note-obj_song.notes+chungy)]
                 //obj_player.hit[(note-obj_song.notes)]=true
                 obj_player.frame=0
@@ -230,7 +199,7 @@ if note < obj_song.notes { //enemy
             }
             break;
             case 9: //hold alt
-            if keyboard_check(obj_stats.bind[note-obj_song.notes]) or gamepad_button_check(0,(obj_stats.bind[note-obj_song.notes+4])) {
+            if obj_stats.botplay || keyboard_check(obj_stats.bind[note-obj_song.notes]) or gamepad_button_check(0,(obj_stats.bind[note-obj_song.notes+4])) {
                 obj_player.sprite_index=obj_player.anim[(note-obj_song.notes+chungy)]
                 //obj_player.hit[(note-obj_song.notes)]=true
                 obj_player.frame=0
@@ -252,5 +221,3 @@ if note < obj_song.notes { //enemy
 }
 }
 
-//accuracy calculation
-obj_song.accuracy = string(min(1, max(0, obj_song.totalHitNote / obj_song.totalNote)) * 100)

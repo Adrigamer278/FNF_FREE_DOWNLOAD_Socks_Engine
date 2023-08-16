@@ -1,9 +1,10 @@
-if (keyboard_check_pressed(vk_enter) or keyboard_check_pressed(ord("Z")) or gamepad_button_check_pressed(0,gp_face1)) && gaveup=false {
+if (keyboard_check_pressed(vk_enter) or keyboard_check_pressed(ord("Z")) or gamepad_button_check_pressed(0,gp_face1)) && gaveup=false && !again {
     audio_stop_sound(mus_gameover)
     audio_play_sound(snd_ha,9999,false)
     alarm[0]=30
     alarm[1]=10000000000 
     sprite_index=spr_dudeayy
+	again=true;
 }
 if (keyboard_check_pressed(vk_escape) or keyboard_check_pressed(vk_shift) or keyboard_check_pressed(ord("X")) or gamepad_button_check_pressed(0,gp_face2)) && gaveup=false {
     gaveup=true

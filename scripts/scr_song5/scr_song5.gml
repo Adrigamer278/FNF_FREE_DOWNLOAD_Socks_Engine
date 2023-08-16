@@ -5,20 +5,20 @@ function scr_song5(){
         var paralax=(((obj_camera.x/image_xscale)/4)-50) //tv screen paralaxing
         //drawing sprites
         draw_sprite(spr_buddyback,2,(((obj_camera.x/image_xscale)/3)-120),0)
-        draw_sprite_ext(spr_buddyback,2,(((obj_camera.x/image_xscale)/3)-120),0,1,1,0,c_black,obj_song.mmmm)
-        obj_song.mmmmm+=0.0025
-        if obj_song.mmmmm=1 {
-            obj_song.mmmmm=0
+        draw_sprite_ext(spr_buddyback,2,(((obj_camera.x/image_xscale)/3)-120),0,1,1,0,c_black,mmmm)
+        mmmmm+=0.0025
+        if mmmmm=1 {
+            mmmmm=0
         }
         if instance_exists(obj_midi_clock) {
             if obj_midi_clock.div_4_trigger=true {
-                obj_song.mmmmmm++
+                mmmmmm++
                 //screen bounce
-                if obj_song.event=11 && obj_song.mmmmmm%2=1 { //intense bounce
+                if event=11 && mmmmmm%2=1 { //intense bounce
                     obj_camera.image_xscale=obj_camera.image_xscale-20
                 }
-                if (obj_song.event=12 or obj_song.event=13 or obj_song.event=27 or obj_song.event=28) { //whatever bounce
-                    if obj_song.mmmmmm%2=1 {
+                if (event=12 or event=13 or event=27 or event=28) { //whatever bounce
+                    if mmmmmm%2=1 {
                         obj_camera.image_xscale=obj_camera.image_xscale-5
                     } else {
                         obj_camera.image_xscale=obj_camera.image_xscale-10
@@ -45,7 +45,7 @@ function scr_song5(){
                         var ll;
                         for(l=0;l<5;l++) {
                             for(ll=0;ll<5;ll++) {
-                                draw_sprite(spr_fump,0,(24*l)-(obj_song.mmmmm*48),(24*ll)-(obj_song.mmmmm*48))
+                                draw_sprite(spr_fump,0,(24*l)-(mmmmm*48),(24*ll)-(mmmmm*48))
                             }
                         }
                     surface_reset_target();
@@ -62,10 +62,10 @@ function scr_song5(){
                     surface_set_target(screen[t,1])
                         draw_clear_alpha(c_black,0) //reset alpha
                         draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,make_color_rgb(3,7,5),1)
-                        obj_song.m+=0.08
-                        draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,c_white,obj_song.m)
+                        m+=0.08
+                        draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,c_white,m)
                         //switch to full on screen
-                        if  obj_song.m>=1 screen[t,0]="light";
+                        if  m>=1 screen[t,0]="light";
                     surface_reset_target();
                 break;
                 case "light":
@@ -79,7 +79,7 @@ function scr_song5(){
                     screen[t,1]=surface_create(45,45)
                     surface_set_target(screen[t,1])
                         draw_clear_alpha(c_black,0) //reset alpha
-                        if obj_song.mmmmmm%2=0 {
+                        if mmmmmm%2=0 {
                             var colorback=make_color_rgb(233,164,242)
                             var colortext=make_color_rgb(249,249,157)
                         } else {
@@ -111,7 +111,7 @@ function scr_song5(){
                         draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,make_color_rgb(122,200,222),1)
                         var ear;
                         for(ear=0;ear<=6;ear++) {
-                            draw_sprite(spr_w3sun,0,(ear*24)+(obj_song.mmmmm*24),(ear*24)+(obj_song.mmmmm*24))
+                            draw_sprite(spr_w3sun,0,(ear*24)+(mmmmm*24),(ear*24)+(mmmmm*24))
                         }
                     surface_reset_target();
                 break;
@@ -131,7 +131,7 @@ function scr_song5(){
                     surface_set_target(screen[t,1])
                         draw_clear_alpha(c_black,0) //reset alpha
                         draw_sprite_ext(spr_blackpixel,0,0,0,45,45,0,c_white,1)
-                        if round(obj_song.songpos)%2=0 {
+                        if round(songpos)%2=0 {
                             draw_set_color(c_red)
                         } else {
                             draw_set_color(c_black)
@@ -166,7 +166,7 @@ function scr_song5(){
                         */
                         draw_set_valign(fa_middle)
                         draw_set_color(c_white)
-                        draw_text((obj_song.mmmmm*14)-28,22,string_hash_to_newline("zzzzzzzzzzzzzzzzzz"))
+                        draw_text((mmmmm*14)-28,22,string_hash_to_newline("zzzzzzzzzzzzzzzzzz"))
                         draw_set_valign(fa_top)
                     surface_reset_target();
                     screen[t,1]=surface_create(45,45)
@@ -213,7 +213,7 @@ function scr_song5(){
                              } else {
                                 beginstocrack=0
                              }
-                            draw_sprite_ext(spr_w3egg,beginstocrack,(e*13)-(obj_song.mmmmm*78),22,1,1,0,make_color_hsv((e/6)*255,127,255),1)
+                            draw_sprite_ext(spr_w3egg,beginstocrack,(e*13)-(mmmmm*78),22,1,1,0,make_color_hsv((e/6)*255,127,255),1)
                         }
                     surface_reset_target();
                 break;
@@ -237,7 +237,7 @@ function scr_song5(){
                         var g;
                         for(g=0;g<=6;g++) {
                             draw_sprite_ext(spr_whitepixel,0,0,g*8,45,1,0,c_black,0.05)
-                            draw_sprite_ext(spr_whitepixel,0,(g*8)-(obj_song.mmmmm*8),0,1,45,0,c_black,0.25)
+                            draw_sprite_ext(spr_whitepixel,0,(g*8)-(mmmmm*8),0,1,45,0,c_black,0.25)
                         }
                         //line
                         var l;
@@ -253,7 +253,7 @@ function scr_song5(){
                         draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,make_color_rgb(29,34,54),1)
                         var ear;
                         for(ear=0;ear<=6;ear++) {
-                            draw_sprite(spr_w3moon,0,(ear*24)+(obj_song.mmmmm*24),(ear*24)+(obj_song.mmmmm*24))
+                            draw_sprite(spr_w3moon,0,(ear*24)+(mmmmm*24),(ear*24)+(mmmmm*24))
                         }
                     surface_reset_target();
                 break;
@@ -281,7 +281,7 @@ function scr_song5(){
                     draw_set_color(jeff)
                     draw_rectangle(8,29,36,33,true)
                     //draw bar
-                    draw_sprite_ext(spr_whitepixel,0,9,30,(obj_song.songpos/audio_sound_length(obj_song.songplaying))*20,4,0,jeff,1)
+                    draw_sprite_ext(spr_whitepixel,0,9,30,(songpos/audio_sound_length(songplaying))*20,4,0,jeff,1)
                     draw_sprite_ext(spr_logdisc,0,22,19,sin(current_time/400),1,0,jeff,1)
                     draw_set_color(c_white)
                     surface_reset_target();
@@ -325,10 +325,10 @@ function scr_song5(){
             surface_free(screen[v,1])
         }
         //drawing MORE sprites :3
-        obj_song.mmmm+=(obj_song.mmm-obj_song.mmmm)/10
+        mmmm+=(mmm-mmmm)/10
         draw_sprite(spr_buddyback,0,0,0)
-        draw_sprite_ext(spr_buddyback,1,(((obj_camera.x/image_xscale)/4)-50),0,1,1,0,c_black,obj_song.mmmm)
-        draw_sprite_ext(spr_buddyback,0,0,0,1,1,0,c_black,obj_song.mmmm)
+        draw_sprite_ext(spr_buddyback,1,(((obj_camera.x/image_xscale)/4)-50),0,1,1,0,c_black,mmmm)
+        draw_sprite_ext(spr_buddyback,0,0,0,1,1,0,c_black,mmmm)
         with(obj_lady) {
             drawgirl=false
             image_alpha=0
@@ -360,62 +360,62 @@ function scr_song5(){
             draw_sprite_ext(sprite_index,image_index,x,y+5,1,1,0,c_black,obj_song.mmmm)
         }
         //anime
-        switch(obj_song.event) {
+        switch(event) {
             case 30: //fade in
-                obj_song.mm+=0.02
-                draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,c_white,obj_song.mm)
-                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)+200,800,-50,0,c_black,obj_song.mm)
-                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)-200,800,50,0,c_black,obj_song.mm)
+                mm+=0.02
+                draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,c_white,mm)
+                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)+200,800,-50,0,c_black,mm)
+                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)-200,800,50,0,c_black,mm)
             break;
             case 31: //buddy anime
-                obj_song.mm+=0.02
-                if obj_song.paused=false {
-                    obj_song.mmmmmmm+=0.005
+                mm+=0.02
+                if paused=false {
+                    mmmmmmm+=0.005
                 }
-                obj_song.mmmmmmm=clamp(obj_song.mmmmmmm,0,1)
-                draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,c_white,obj_song.mm)
-                draw_sprite_ext(obj_badguy.sprite_index,obj_badguy.image_index,(obj_camera.x+62)+(obj_song.mmmmmmm*4),(obj_camera.y)+200,1,1,0,c_white,obj_song.mmmmmmm*2)
+                mmmmmmm=clamp(mmmmmmm,0,1)
+                draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,c_white,mm)
+                draw_sprite_ext(obj_badguy.sprite_index,obj_badguy.image_index,(obj_camera.x+62)+(mmmmmmm*4),(obj_camera.y)+200,1,1,0,c_white,mmmmmmm*2)
                 var l;
                 for(l=2;l<=7;l++) {
                     if obj_badguy.sprite_index=obj_badguy.anim[l] {
-                        draw_sprite_ext(spr_earth,current_time/200,(obj_camera.x-75)+(obj_song.mmmmmmm*4),obj_camera.y-82,6,6,0,c_white,obj_song.mmmmmmm*2)
+                        draw_sprite_ext(spr_earth,current_time/200,(obj_camera.x-75)+(mmmmmmm*4),obj_camera.y-82,6,6,0,c_white,mmmmmmm*2)
                     }
                 }
-                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)+200,800,-50,0,c_black,obj_song.mm)
-                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)-200,800,50,0,c_black,obj_song.mm)
+                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)+200,800,-50,0,c_black,mm)
+                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)-200,800,50,0,c_black,mm)
             break;
             case 32: //dude anime
-                obj_song.mm+=0.02
-                if obj_song.paused=false {
-                    obj_song.mmmmmmm+=0.005
-                    obj_song.mmm+=0.005
+                mm+=0.02
+                if paused=false {
+                    mmmmmmm+=0.005
+                    mmm+=0.005
                 }
-                obj_song.mmmmmmm=clamp(obj_song.mmmmmmm,0,1)
-                obj_song.mmm=clamp(obj_song.mmm,0,1)
-                obj_song.mm=clamp(obj_song.mm,0,1)
-                draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,c_white,obj_song.mm)
-                draw_sprite_ext(obj_badguy.sprite_index,obj_badguy.image_index,(obj_camera.x+62)+(obj_song.mmmmmmm*4),(obj_camera.y)+200,1,1,0,c_white,(obj_song.mmmmmmm*4)-(obj_song.mmm*16))
-                draw_sprite_ext(spr_animelady,current_time/200,(obj_camera.x+62)-(obj_song.mmm*4),(obj_camera.y),1,1,0,c_white,obj_song.mmm*4)
+                mmmmmmm=clamp(mmmmmmm,0,1)
+                mmm=clamp(mmm,0,1)
+                mm=clamp(mm,0,1)
+                draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,c_white,mm)
+                draw_sprite_ext(obj_badguy.sprite_index,obj_badguy.image_index,(obj_camera.x+62)+(mmmmmmm*4),(obj_camera.y)+200,1,1,0,c_white,(mmmmmmm*4)-(mmm*16))
+                draw_sprite_ext(spr_animelady,current_time/200,(obj_camera.x+62)-(mmm*4),(obj_camera.y),1,1,0,c_white,mmm*4)
                 scr_skinswapdude(c_white)
-                    draw_sprite_ext(obj_player.sprite_index,obj_player.image_index,(obj_camera.x-100)-(obj_song.mmm*4),obj_camera.y+160,1,1,0,c_white,obj_song.mmm*4)
+                    draw_sprite_ext(obj_player.sprite_index,obj_player.image_index,(obj_camera.x-100)-(mmm*4),obj_camera.y+160,1,1,0,c_white,mmm*4)
                 shader_reset();
-                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)+200,800,-50,0,c_black,obj_song.mm)
-                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)-200,800,50,0,c_black,obj_song.mm)
+                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)+200,800,-50,0,c_black,mm)
+                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)-200,800,50,0,c_black,mm)
             break;
             case 33: //now go away
-                obj_song.mm-=0.02
-                obj_song.mmm=0
-                if obj_song.paused=false {
-                    obj_song.mmmmmmm+=0.005
+                mm-=0.02
+                mmm=0
+                if paused=false {
+                    mmmmmmm+=0.005
                 }
-                obj_song.mmmmmmm=clamp(obj_song.mmmmmmm,0,1)
-                draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,c_white,obj_song.mm)
-                draw_sprite_ext(spr_animelady,current_time/200,(obj_camera.x+62)-(obj_song.mmmmmmm*4),(obj_camera.y),1,1,0,c_white,obj_song.mm)
+                mmmmmmm=clamp(mmmmmmm,0,1)
+                draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,c_white,mm)
+                draw_sprite_ext(spr_animelady,current_time/200,(obj_camera.x+62)-(mmmmmmm*4),(obj_camera.y),1,1,0,c_white,mm)
                 scr_skinswapdude(c_white)
-                    draw_sprite_ext(spr_dude3idle,obj_player.image_index,(obj_camera.x-100)-(obj_song.mmmmmmm*4),obj_camera.y+160,1,1,0,c_white,obj_song.mm)
+                    draw_sprite_ext(spr_dude3idle,obj_player.image_index,(obj_camera.x-100)-(mmmmmmm*4),obj_camera.y+160,1,1,0,c_white,mm)
                 shader_reset();
-                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)+200,800,-50,0,c_black,obj_song.mm)
-                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)-200,800,50,0,c_black,obj_song.mm)
+                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)+200,800,-50,0,c_black,mm)
+                draw_sprite_ext(spr_blackpixel,0,0,(obj_camera.y)-200,800,50,0,c_black,mm)
             break;
         }
         //m   mm    mmmmmmmmmmmmmmmmmmmmm

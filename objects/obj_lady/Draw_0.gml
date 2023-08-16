@@ -2,7 +2,7 @@
 draw_self();
 if instance_exists(obj_midi_clock) {
         if obj_midi_clock.div_4_trigger = true {
-            image_index+=0.5
+            image_index+=0.5 * global.delta_multiplier 
             frame=0
             //loopover
             if type=maxtypes {
@@ -13,7 +13,7 @@ if instance_exists(obj_midi_clock) {
         }
     
     if frame<maxframes {
-        frame+=0.15
+        frame+=0.15 * global.delta_multiplier 
     }
 }
 

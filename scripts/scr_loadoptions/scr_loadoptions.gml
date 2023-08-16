@@ -10,6 +10,7 @@ function scr_loadoptions() {
 	        bind[2]=ini_read_real("settings","downbind",38.000000)
 	        bind[3]=ini_read_real("settings","leftbind",39.000000)
 	        skin=ini_read_real("settings","skin",0)
+			in_game_fps=ini_read_real("settings","fps", 60.000000)
 	        volume=ini_read_real("settings","volume",1)
 			fullscreen=ini_read_real("settings","fullscreen",0)
 	        audio_master_gain(volume)

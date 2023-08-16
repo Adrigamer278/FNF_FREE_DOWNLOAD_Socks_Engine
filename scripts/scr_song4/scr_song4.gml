@@ -97,11 +97,11 @@ function scr_song4(){
                         obj_camera.image_xscale=obj_camera.image_xscale-5
                     }
 				}
-                    obj_song.mmmm++
+                    obj_song.mmmm += 1 * global.delta_multiplier
                 }
                 //background
-                obj_song.m+=1
-                obj_song.mm+=0.25
+                obj_song.m+=1 * global.delta_multiplier
+                obj_song.mm+=0.25 * global.delta_multiplier
                 if obj_song.m>=344 {
                     obj_song.m=0
                 }
@@ -133,8 +133,8 @@ function scr_song4(){
                             var screened=0
                         }
                         draw_sprite(spr_speakersscreenlightw2,2+screened,x,y)
-                        draw_sprite(spr_speakersscreenlightw2,4,x,y+(sin(current_time/200)))
-                        obj_song.mmmmm-=0.5
+                        draw_sprite(spr_speakersscreenlightw2,4,x,(y+(sin(current_time/200)) * global.delta_multiplier))
+                        obj_song.mmmmm-=0.5 * global.delta_multiplier
                     }
                     draw_sprite(spr_busow,0,224,296)
                 }
@@ -146,9 +146,9 @@ function scr_song4(){
         }
         if obj_song.event<8 && obj_song.songpos>0.1 { //skip intro (SORRY FOR HAVING 2 IF STATEMENTS CHECKING FOR THE SAME THING WAAAAA)
             if keyboard_check(vk_control) && paused=false {
-                obj_song.mmm+=0.02
+                obj_song.mmm+=0.02 * global.delta_multiplier
             } else {
-                obj_song.mmm-=0.02
+                obj_song.mmm-=0.02 * global.delta_multiplier
             }
             obj_song.mmm=clamp(obj_song.mmm,0,2)
             draw_set_font(fnt_comic2)

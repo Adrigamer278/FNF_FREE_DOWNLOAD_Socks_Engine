@@ -53,9 +53,9 @@ function scr_song_3(){
             break;
             case 1: //tunnel
                 if obj_song.paused=false {
-                    obj_song.m+=0.005
-                    obj_song.mm+=(obj_song.mmm-obj_song.mm)/500
-                    obj_song.mmmm+=(obj_song.mmmmm-obj_song.mmmm)/500
+                    obj_song.m+=0.005 * global.delta_multiplier
+                    obj_song.mm+=((obj_song.mmm-obj_song.mm)/500) * global.delta_multiplier
+                    obj_song.mmmm+=((obj_song.mmmmm-obj_song.mmmm)/500) * global.delta_multiplier
                 }
                 draw_sprite(spr_crompt,0,obj_camera.x,obj_camera.y)
                 draw_sprite_ext(obj_badguy.sprite_index,obj_badguy.image_index,obj_camera.x+mm,(obj_camera.y+mmmm)+80,2,2,0,c_white,1)
@@ -64,7 +64,7 @@ function scr_song_3(){
             break;
             case 2:
                 if obj_song.paused=false {
-                    obj_song.mm+=(obj_song.mmm-obj_song.mm)/50
+                    obj_song.mm+=((obj_song.mmm-obj_song.mm)/50) * global.delta_multiplier
                 }
                 with(obj_player) {
                     scr_skinswapdude(c_white);
@@ -77,8 +77,8 @@ function scr_song_3(){
             break;
             case 3: //sad
                 if obj_song.paused=false {
-                    obj_song.mm+=(obj_song.mmm-obj_song.mm)/100
-                    obj_song.mmmm+=(obj_song.mmmmm-obj_song.mmmm)/120
+                    obj_song.mm+=((obj_song.mmm-obj_song.mm)/100) * global.delta_multiplier
+                    obj_song.mmmm+=((obj_song.mmmmm-obj_song.mmmm)/120) * global.delta_multiplier
                 }
                 draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,0,c_black,1)
                 draw_set_alpha(obj_song.mmmm);
@@ -117,7 +117,7 @@ function scr_song_3(){
                     shader_set_uniform_f(texel, -0.005, -0.005)
                     draw_sprite_ext(spr_bidbg,1,obj_backgroundp1.x,obj_backgroundp1.y,1,1,0,c_white,0.5)
                 shader_reset();
-                obj_song.mmm+=0.0025
+                obj_song.mmm+=0.0025 * global.delta_multiplier
                 if obj_song.mmm>=1 {
                     obj_song.mmm=0
                 }

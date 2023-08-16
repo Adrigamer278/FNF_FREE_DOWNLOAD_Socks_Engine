@@ -5,5 +5,7 @@ if(!obj_song.offHud)
 	if press = true {
 	    draw_sprite_ext(sprite,note,x*2,y*2,2,2,0,c_black,0.5)
 	}
+		
+
 }
 

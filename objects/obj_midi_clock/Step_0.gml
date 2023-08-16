@@ -1,5 +1,6 @@
 if paused = false {
-    time = (get_timer() - start_time);
+    //time = (get_timer() - start_time);
+	time += (delta_time)
 
     div_4_previous = div_4;
     div_8_previous = div_8;
@@ -29,6 +30,8 @@ if paused = false {
     else div_16_trigger = false;
     if div_32_previous != div_32 div_32_trigger = true;
     else div_32_trigger = false;
+	
+	crotchet = 60/bpm;
 } else {
     div_4_trigger = false
     div_8_trigger = false

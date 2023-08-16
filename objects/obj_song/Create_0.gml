@@ -85,3 +85,5 @@ saved=false
 
 category = 0
 offHud = false
+
+pitch = 1;

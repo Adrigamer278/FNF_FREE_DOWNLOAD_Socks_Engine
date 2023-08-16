@@ -57,8 +57,15 @@ if(!offHud)
 	        draw_set_color(tcolor);
 	        draw_text_transformed(200,(377-minus),string_hash_to_newline(string("score: ")+string(coolscore)+string(" | ")+string("misses: ")+string(misses) + " | accuracy: " + string(accuracy) + "%"),1,1,0)
 			
-			if(obj_stats.botplay)
-				draw_text(200, 100, "BotPlay")
+			if(obj_stats.botplay){
+				for (var i=0;i<3;i++) {
+					for (var k=0;k<3;k++) {
+						draw_text_color(200 + i - 1, 100 + k - 1, "BotPlay", c_black, c_black, c_black, c_black, 1)
+						draw_text_color(200 + i, 100 + k, "BotPlay", c_black, c_black, c_black, c_black, 1)
+					}
+				}
+				draw_text_color(200, 100, "BotPlay", c_white, c_white, c_white, c_white, 1)
+			}
 			
 	        draw_set_halign(fa_left);
 	    surface_reset_target()
@@ -82,6 +89,7 @@ if paused=true {
                     obj_fadeout.roomgo=room
 					instance_destroy(obj_midi_clock)
                     audio_stop_sound(songplaying)
+					game_set_speed(60, gamespeed_fps);
 					
                 }
             break;
@@ -96,6 +104,7 @@ if paused=true {
                         obj_fadeout.roomgo=rm_freeplay
                     }
                     audio_stop_sound(songplaying)
+					game_set_speed(60, gamespeed_fps);
 					instance_destroy(obj_midi_clock)
                     //music
                     if !audio_is_playing(asset_get_index("mus_menu" + string(obj_stats.randomMenuSong))) {

@@ -50,7 +50,7 @@ function scr_song_1(){
                         if obj_song.m%4=0 or obj_song.m=0{
                             obj_song.mm=1
                         }
-                        obj_song.mm-=0.02
+                        obj_song.mm-=0.02 * global.delta_multiplier
                         alpha=obj_song.mm
                     }
                 break;
@@ -135,25 +135,25 @@ function scr_song_1(){
                 break;
                 case 6:
                     if obj_song.paused=false {
-                        obj_song.mmmmmm+=0.0002
+                        obj_song.mmmmmm+=0.0002 * global.delta_multiplier
                     }
                     draw_sprite_ext(spr_georgetvintro,0,obj_camera.x,obj_camera.y,obj_song.mmmmmm,obj_song.mmmmmm,0,c_white,1)
                 break;
                 case 7:
                     if obj_song.paused=false {
-                        obj_song.mmmmmm+=0.0002
+                        obj_song.mmmmmm+=0.0002 * global.delta_multiplier
                     }
                     draw_sprite_ext(spr_georgetvintro,1,obj_camera.x,obj_camera.y,obj_song.mmmmmm,obj_song.mmmmmm,0,c_white,1)
                 break;
                 case 8:
                     if obj_song.paused=false {
-                        obj_song.mmmmmm+=0.0002
+                        obj_song.mmmmmm+=0.0002 * global.delta_multiplier
                     }
                     draw_sprite_ext(spr_georgetvintro,2,obj_camera.x,obj_camera.y,obj_song.mmmmmm,obj_song.mmmmmm,0,c_white,1)
                 break;
                 case 9:
                     if obj_song.paused=false {
-                        obj_song.mmmmmm+=0.0002
+                        obj_song.mmmmmm+=0.0002 * global.delta_multiplier
                     }
                     draw_sprite_ext(spr_georgetvintro,3,obj_camera.x,obj_camera.y,obj_song.mmmmmm,obj_song.mmmmmm,0,c_white,1)
                 break;
@@ -161,9 +161,9 @@ function scr_song_1(){
             //skip intro
             if obj_song.songpos<25 && obj_song.songpos>0 {
                 if keyboard_check(vk_control) && obj_song.paused=false{
-                    obj_song.m+=0.02
-                } else {
-                    obj_song.m-=0.02
+                    obj_song.m+=0.02 * global.delta_multiplier
+                } else { 
+                    obj_song.m-=0.02 * global.delta_multiplier
                 }
                 obj_song.m=clamp(obj_song.m,0,2)
                 draw_set_font(fnt_comic2)
@@ -216,7 +216,7 @@ function scr_song_1(){
                 case 1:
                     //draw_sprite(spr_georgecutscene,3,0,0)
                     if obj_song.paused=false {
-                        obj_song.m+=0.75
+                        obj_song.m+=0.75 * global.delta_multiplier
                         var cooltext = "INCOMING FUMP"
                     } else {
                         var cooltext = "bro, really?"

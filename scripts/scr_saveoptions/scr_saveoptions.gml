@@ -12,6 +12,7 @@ function scr_saveoptions() {
 	        ini_write_real("settings","downbind",bind[2])
 	        ini_write_real("settings","leftbind",bind[3])
 	        ini_write_real("settings","skin",skin)
+			ini_write_real("settings","fps",in_game_fps)
 	        ini_write_real("settings","volume",volume)
 			ini_write_real("settings","fullscreen",fullscreen)
 	        ini_write_real("extra","discord",discord)

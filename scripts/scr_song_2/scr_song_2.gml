@@ -2,6 +2,9 @@
 function scr_song_2(){
 	if instance_exists(obj_note) {
             obj_note.bombhit=false
+            if obj_note.type=3 {
+                obj_note.bombsprite=spr_bombsn
+            }
         }
         //tint math
             if instance_exists(obj_midi_clock) && obj_song.event>3 {
@@ -32,8 +35,8 @@ function scr_song_2(){
                 var blue=make_color_rgb(115,223,242);
                 //var redshadow=make_color_rgb(89,0,51);
                 //var blueshadow=make_color_rgb(4,0,74);
-                obj_song.mmm+=(obj_song.mm-obj_song.mmm)/180
-                obj_song.mmmm+=(obj_song.alph-obj_song.mmmm)/90
+                obj_song.mmm+=((obj_song.mm-obj_song.mmm)/180) * global.delta_multiplier
+                obj_song.mmmm+=((obj_song.alph-obj_song.mmmm)/90) * global.delta_multiplier
                 var colorsky=merge_color(red,blue,obj_song.mmm)
                 //var colorshadow=merge_color(redshadow,blueshadow,mmm)
                 var shade=obj_song.mmmm
@@ -55,8 +58,8 @@ function scr_song_2(){
                 var coolcolor=make_color_rgb(183,224,251);
                 var coolcolor2=make_color_rgb(120,164,228);
                 if obj_song.paused=false {
-                    obj_song.m+=0.02
-                    obj_song.mm+=0.0005
+                    obj_song.m+=0.02 * global.delta_multiplier
+                    obj_song.mm+=0.0005 * global.delta_multiplier
                 }
                 draw_rectangle_colour(0,0,400,400,coolcolor,coolcolor,coolcolor2,coolcolor2,false)
                 draw_sprite_ext(obj_player.sprite_index,obj_player.image_index,obj_player.x,obj_player.y-20,1,1,0,c_black,1)
@@ -68,10 +71,10 @@ function scr_song_2(){
                 var coolcolor=make_color_rgb(183,224,251);
                 var coolcolor2=make_color_rgb(120,164,228);
                 if obj_song.paused=false {
-                    obj_song.m+=0.02
-                    obj_song.mm+=0.0005
-                    obj_song.mmm+=0.02
-                    obj_song.mmmm+=0.0005
+                    obj_song.m+=0.02 * global.delta_multiplier
+                    obj_song.mm+=0.0005 * global.delta_multiplier
+                    obj_song.mmm+=0.02 * global.delta_multiplier
+                    obj_song.mmmm+=0.0005 * global.delta_multiplier
                 }
                 draw_rectangle_colour(0,0,400,400,coolcolor,coolcolor,coolcolor2,coolcolor2,false)
                 draw_sprite_ext(obj_player.sprite_index,obj_player.image_index,obj_player.x,obj_player.y-20,1,1,0,c_black,1)
@@ -135,7 +138,7 @@ function scr_song_2(){
                                 var screened=1
                             }
                             draw_sprite(spr_cstvscreen,0+screened,x,y)
-                            obj_song.mmmmmm-=0.5
+                            obj_song.mmmmmm-=0.5 * global.delta_multiplier
                         break;
                     }
                     draw_sprite(sprite_index,1,x,y)
@@ -201,7 +204,7 @@ function scr_song_2(){
                     } else {
                         obj_song.dingus=60
                     }
-                    obj_song.mmmmmmm+=(obj_song.mmmmm-obj_song.mmmmmmm)/obj_song.dingus
+                    obj_song.mmmmmmm+=((obj_song.mmmmm-obj_song.mmmmmmm)/obj_song.dingus) * global.delta_multiplier
                     with(obj_nermal) {
                         draw_sprite(sprite_index,image_index,obj_camera.x+200-(obj_song.mmmmmmm),obj_camera.y)
                         draw_sprite_ext(sprite_index,image_index,obj_camera.x+200-(obj_song.mmmmmmm),obj_camera.y,1,1,0,colorsky,0.8)

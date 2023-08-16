@@ -9,6 +9,7 @@ if obj_song.paused=false {
             alarm[0]=5
         }
     }
+
 }
 
 

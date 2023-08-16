@@ -26,4 +26,8 @@ if keyboard_check_pressed(ord("7")) {
     debug=!debug
 }
 
+//DELTA UPDATE, fuck the framerate
+global.actual_delta = delta_time/1000000;
+global.delta_multiplier = global.actual_delta/reg_fps;
+
 window_set_fullscreen(fullscreen)

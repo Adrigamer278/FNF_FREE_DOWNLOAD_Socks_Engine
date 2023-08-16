@@ -78,6 +78,8 @@ function scr_noteevent(argument0, argument1) {
 	            case 8: //boodooboopto
 	                obj_song.event++
 	                obj_song.mmmmmmm="nothing"
+					obj_player.sprite_index = obj_player.idle[0]
+					obj_player.press = false
 	            break;
 	            case 9: //sad
 	                obj_song.mmm=1
@@ -94,6 +96,8 @@ function scr_noteevent(argument0, argument1) {
 	                obj_song.mmmmm=0
 	                obj_song.mmmmmmm="SWAG!"
 	                obj_player.idleon=obj_badguy.idleon
+					obj_player.sprite_index = obj_player.idle[0]
+					obj_player.press = false
 	                obj_player.x=obj_camera.x+60
 	                obj_badguy.x=obj_camera.x-60
 	                //flash
@@ -211,6 +215,8 @@ function scr_noteevent(argument0, argument1) {
 	                obj_badguy.y=350
 	                obj_badguy.x=88
 	                obj_camera.image_xscale-=20
+					obj_player.sprite_index = obj_player.idle[0]
+					obj_player.press = false
 	                with(obj_nermal) {
 	                        idle[0]=spr_nermalbidle
 	                        anim[0]=spr_nermalbleft
@@ -237,6 +243,8 @@ function scr_noteevent(argument0, argument1) {
 	                obj_player.x=320
 	                obj_player.y=320
 	                scr_charset(0,-4)
+					obj_player.sprite_index = obj_player.idle[0]
+					obj_player.press = false
 	                instance_destroy(obj_nermal);
 	                instance_create(obj_badguy.x-65,obj_badguy.y+5,obj_nermal)
 	                obj_song.mmmmm=0
@@ -672,6 +680,8 @@ function scr_noteevent(argument0, argument1) {
 	                //obj_badguy.framerate=0.5
 	                //obj_player.framerate=0.5
 	                scr_charset(0,4)
+					obj_player.sprite_index = obj_player.idle[0]
+					obj_player.press = false
 	            break;
 	            case 34:
 	                if obj_song.skill>65 {
@@ -735,6 +745,8 @@ function scr_noteevent(argument0, argument1) {
 	                obj_song.mmm=1
 	                obj_song.weeknd3m=0.75
 	                scr_charset(0,5)
+					obj_badguy.sprite_index = obj_badguy.idle[0]
+					obj_badguy.press = false
 	                //camera snap
 	                with(obj_camera) {
 	                    place=1
@@ -787,6 +799,8 @@ function scr_noteevent(argument0, argument1) {
 	            break;
 	            case 9:
 	                scr_charset(0,5.1)
+					obj_badguy.sprite_index = obj_badguy.idle[0]
+					obj_badguy.press = false
 	                obj_song.event++
 	                obj_song.mm="nothing"
 	                with(obj_camera) {
@@ -798,7 +812,7 @@ function scr_noteevent(argument0, argument1) {
 	                //screen is back!
 	                instance_destroy(obj_fadeout)
 	                instance_create(0,0,obj_fadein)
-	                obj_fadein.time=0.08
+	                obj_fadein.time=0.09
 	                obj_fadein.depth=999999
 	            break;
 	            case 10: //fade in
@@ -806,7 +820,7 @@ function scr_noteevent(argument0, argument1) {
 	                //screen fade
 	                instance_create(0,0,obj_fadeout)
 	                obj_fadeout.roomable=false
-	                obj_fadeout.time=0.025
+	                obj_fadeout.time=0.01
 	                obj_fadeout.depth=999999
 	            break;
 	            case 11:
@@ -823,7 +837,7 @@ function scr_noteevent(argument0, argument1) {
 	                instance_destroy(obj_fadeout)
 	                instance_create(0,0,obj_fadein)
 	                obj_fadein.time=0.08
-	                obj_fadein.depth=999999
+	                obj_fadein.depth=-999999
 	            break;
 	            case 12:
 	                obj_song.mm="nothing"

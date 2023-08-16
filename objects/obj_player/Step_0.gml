@@ -1,110 +1,11 @@
 /// @description key press old
-/*
-if paused=false {
-    if keyboard_check_pressed(obj_stats.bind[1]){
-        if hit = true {
-            hit=false
-            press=true
-            frame=0
-            sprite_index=down
-        } else {
-            obj_song.skill+=2.5
-            obj_song.misses+=1
-            obj_song.coolscore-=50
-            press=true
-            frame=0
-            sprite_index=dmiss
-        }
-    }
-    if keyboard_check_pressed(obj_stats.bind[2]){
-        if hit = true {
-            hit=false
-            press=true
-            frame=0
-            sprite_index=up
-        } else {
-            obj_song.skill+=2.5
-            obj_song.misses+=1
-            obj_song.coolscore-=50
-            press=true
-            frame=0
-            sprite_index=umiss
-        }
-    }
-    if keyboard_check_pressed(obj_stats.bind[0]){
-        if hit = true {
-            hit=false
-            press=true
-            frame=0
-            sprite_index=left
-        } else {
-            obj_song.skill+=2.5
-            obj_song.misses+=1
-            obj_song.coolscore-=50
-            press=true
-            frame=0
-            sprite_index=lmiss
-        }
-    }
-    if keyboard_check_pressed(obj_stats.bind[3]){
-        if hit = true {
-            hit=false
-            press=true
-            frame=0
-            sprite_index=right
-        } else {
-            obj_song.skill+=2.5
-            obj_song.misses+=1
-            obj_song.coolscore-=50
-            press=true
-            frame=0
-            sprite_index=rmiss
-        }
-    }
-    //animating and timing
-    if frame<framenumbs{
-        image_index=frame
-    }
-    if frame<framenumbs+10 && press=true{
-        frame+=0.5
-    } else {
-        press=false
-        sprite_index=idle
-    }
-    //bopping
-    if instance_exists(obj_midi_clock) {
-        if obj_midi_clock.div_4_trigger = true && press=false{
-            frame=0
-            bop=true
-        }
-        if bop = true{
-            if frame<framenumbs{
-                frame+=0.15
-            } else {
-                bop=false
-            }
-            image_index=frame
-        }
-    }
-}
-
 /* */
 ///hit note new
 if obj_song.paused=false {
     var n;
     for (n=0;n<obj_song.notes;n++) {
-		if (obj_stats.botplay)
-		{
-			if hit[n] = true 
-			{
-				hit[n]=false
-				press=true
-	            frame=0
-	            sprite_index=anim[n]	
-			}
-		}
         //actually hit note
-        if keyboard_check_pressed(obj_stats.bind[n]) or gamepad_button_check_pressed(0,obj_stats.bind[n+4]) {
+        if obj_stats.botplay || keyboard_check_pressed(obj_stats.bind[n]) or gamepad_button_check_pressed(0,obj_stats.bind[n+4]) {
 			if hit[n] == true {
 			
                 hit[n]=false
@@ -136,7 +37,7 @@ if obj_song.paused=false {
         if sprite_index=ayy {
             frame+=12/1000000*delta_time
         } else {
-            frame+=framerate
+            frame+=framerate * global.delta_multiplier
         }
     } else {
         press=false
@@ -167,7 +68,7 @@ if obj_song.paused=false {
         }
         if bop=true && press=false{
             if frame<image_number-1 {
-                frame+=0.15
+                frame+=0.15 * global.delta_multiplier
             } else {
                 bop=false
             }
@@ -179,6 +80,5 @@ if obj_song.paused=false {
     }
     //triple jump
 }
-
 /* */
 /*  */

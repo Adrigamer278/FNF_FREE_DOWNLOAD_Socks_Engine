@@ -13,9 +13,9 @@ if obj_song.paused=false {
 //animations
     if (frame<image_number+10 && press=true) {
         if sprite_index=ayy {
-            frame+=12/1000000*delta_time//0.2
+            frame+=(12/1000000*delta_time)// * global.delta_multiplier //0.2
         } else {
-            frame+=framerate
+            frame+=framerate * global.delta_multiplier 
         }
     } else {
         press=false
@@ -46,7 +46,7 @@ if obj_song.paused=false {
         }
         if bop=true && press=false {
             if frame<image_number-1 {
-                frame+=0.15
+                frame+=0.15 * global.delta_multiplier 
             } else {
                 bop=false
             }

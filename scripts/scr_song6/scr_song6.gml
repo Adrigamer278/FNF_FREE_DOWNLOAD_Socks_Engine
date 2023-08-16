@@ -1,6 +1,7 @@
 //Tsunami
 
 function scr_song6(){
+
 	//tv screen surface handling
         var paralax=(((obj_camera.x/image_xscale)/4)-50) //tv screen paralaxing
         var scarysin=round(2*(sin(current_time/350)))
@@ -90,13 +91,13 @@ function scr_song6(){
                 var colorgo2=make_color_hsv(151,240,30)
             break;
         }
-        obj_song.mmmm+=(1-obj_song.mmmm)/30 
+        obj_song.mmmm+=((1-obj_song.mmmm)/30) * global.delta_multiplier 
         var colorcool1=merge_color(colorbase1,colorgo1,obj_song.mmmm)
         var colorcool2=merge_color(colorbase2,colorgo2,obj_song.mmmm)
         //screen bop
         if instance_exists(obj_midi_clock) {
             if obj_midi_clock.div_4_trigger=true {
-                obj_song.m++
+                obj_song.m += 1 * global.delta_multiplier
                 switch(obj_song.mm) {
                     case "hes doing something":
                         if obj_song.m%2=1 {
@@ -168,7 +169,7 @@ function scr_song6(){
         } else {    //this stuff isn't indented because I added this if statement later and I didn't feel like indenting all of this manually
         draw_sprite(spr_buddyback,2,(((obj_camera.x/image_xscale)/3)-120),scarysin2)
         draw_sprite_ext(spr_whitepixel,0,0,0,room_width,room_height,1,colorcool2,0.31)
-        obj_song.mmmmm+=0.0025
+        obj_song.mmmmm+=0.0025 * global.delta_multiplier
         if obj_song.mmmmm=1 {
             obj_song.mmmmm=0
         }
@@ -228,7 +229,7 @@ function scr_song6(){
 	                            obj_song.mmm=1
 	                        }
 						}
-                        obj_song.mmm-=0.0025
+                        obj_song.mmm-=0.0025 * global.delta_multiplier
                         draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,make_color_rgb(15,17,51),1)
                         draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,make_color_rgb(18,18,218),obj_song.mmm)
                     surface_reset_target();
@@ -246,15 +247,15 @@ function scr_song6(){
 	                            }
 	                        }
 						}
-                        obj_song.mmm-=0.0025
-                        obj_song.mmmmmm-=0.0025
+                        obj_song.mmm-=0.0025 * global.delta_multiplier
+                        obj_song.mmmmmm-=0.0025 * global.delta_multiplier
                         draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,make_color_rgb(15,17,51),1)
                         draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,make_color_rgb(18,18,218),obj_song.mmm)
                         draw_sprite_ext(spr_whitepixel,0,0,0,45,45,0,make_color_rgb(107,107,231),obj_song.mmmmmm)
                     surface_reset_target();
                 break;
                 case "static":
-                    obj_song.mmmmmmm+=0.0025
+                    obj_song.mmmmmmm+=0.0025 * global.delta_multiplier
                     if obj_song.mmmmmmm=1 {
                         obj_song.mmmmmmm=0
                         for(tv=0;tv<=15;tv++) {

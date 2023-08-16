@@ -28,9 +28,4 @@ div_8_trigger = false;		//eigth note trigger
 div_16_trigger = false;     //16th note trigger
 div_32_trigger = false;     //32nd note trigger
 
-
-
-
-
-
-
+crotchet = 60/bpm;

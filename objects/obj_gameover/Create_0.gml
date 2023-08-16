@@ -10,6 +10,7 @@ jokesover=false
 shake=50
 whatever=0
 gaveup=false
+again=false
 alarm[1]=50
 var shit = round(random(100))
 if shit = 99 {
