@@ -64,3 +64,6 @@ submenop[1] = 0
 
 randomise();
 bg = irandom(10);
+
+//List for note spaces
+id_list = []

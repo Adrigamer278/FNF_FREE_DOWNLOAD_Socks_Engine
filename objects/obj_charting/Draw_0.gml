@@ -125,7 +125,7 @@ draw_text_color(540, 200+ yy, bpmWriter + stick3, c_black, c_black, c_black, c_b
 //HitSound Check mark
 draw_sprite_ext(spr_cheker, hitsoundCheck, 520, 240+ yy, 1, 1, 0, c_white, 1)
 draw_set_halign(fa_center)
-draw_text(528, 260+ yy, string_hash_to_newline("HitSound#(Experimental)"))
+draw_text(528, 260+ yy, string_hash_to_newline("HitSound"))
 
 if(_mL && (mX > 520 && mX < 536 && mY > 240+ yy && mY < 256+ yy))
 	hitsoundCheck = !hitsoundCheck

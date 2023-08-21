@@ -68,37 +68,23 @@ if (bpmWrite)
 		bpmWriter=string_copy(bpmWriter, 1, string_length(bpmWriter)-1)		
 }
 
-//I bad at programming
-var coolThing = round(songpos/60*bpm*4)
 
-if(hitsoundCheck)
+if(hitsoundCheck) && (songpos>-1) && !audio_is_paused(songplaying) 
 {
-	if songpos>-1
-	{
-		for (var cc=0; cc<notes*2; cc++) {
-		    for (var c=0; c<songlong; c++) {
-		       if note[cc,c] > 0 {
-					//trace(c, "||", floor((floor(songpos * bpm) + 1)/15))
-					//WARNING THIS IS A VERY BROKEN AND STUPID
-		            if((c == coolThing) && audio_is_playing(songplaying))
-					{
-						if(!playHitSound)
-							audio_play_sound(snd_hitsound, 999, 0)
-						playHitSound = true
-						hitsoundTimer = (bpm /songlong) * 12
-						//playHitSound = !playHitSound
-					}
-		        }
-		    }
-		}
-	}
-}
-
-
-if(playHitSound)
-{
-	hitsoundTimer--
+	var coolThing = round(songpos/60*bpm*4);
 	
-	if(hitsoundTimer <= 0)
-		playHitSound = false
+	for(var i = 0; i < array_length(id_list); i++){
+		var _id = id_list[i];
+		var note_pos = (_id.y - 64) / 16
+		trace(note_pos, coolThing)
+		if(note_pos == coolThing){
+			if(!_id.s_play){
+				audio_play_sound(snd_hitsound, 9999, 0)
+				_id.s_play = true;
+			}
+		}
+		else
+			_id.s_play = false
+	}
+		
 }
