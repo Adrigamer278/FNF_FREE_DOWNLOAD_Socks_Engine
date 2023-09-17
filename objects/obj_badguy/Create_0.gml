@@ -39,4 +39,4 @@ anim[11]=spr_TVright
 //miss
 pause=spr_TVpause
 //ayy sound
-bad_ayy_snd = snd_dudeayy
+bad_ayy_snd = noone

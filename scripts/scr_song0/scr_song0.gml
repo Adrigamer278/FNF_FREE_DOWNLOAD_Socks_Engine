@@ -8,6 +8,7 @@ function scr_song0(){
             obj_note.spriteholdcap=spr_notecapgaw
         }
         obj_uinotes.sprite=spr_uinotegaw
+		//obj_noteFlash.sprite = spr_uinotesFlashGaw
         //ui
         //health bar
         obj_song.houtline=c_white

@@ -402,6 +402,7 @@
     {"id":{"name":"scr_song6","path":"scripts/scr_song6/scr_song6.yy",},},
     {"id":{"name":"spr_georgeleftalt","path":"sprites/spr_georgeleftalt/spr_georgeleftalt.yy",},},
     {"id":{"name":"spr_georgedownalt","path":"sprites/spr_georgedownalt/spr_georgedownalt.yy",},},
+    {"id":{"name":"spr_uinotesFlashGaw","path":"sprites/spr_uinotesFlashGaw/spr_uinotesFlashGaw.yy",},},
     {"id":{"name":"spr_georgeupalt","path":"sprites/spr_georgeupalt/spr_georgeupalt.yy",},},
     {"id":{"name":"spr_georgerightalt","path":"sprites/spr_georgerightalt/spr_georgerightalt.yy",},},
     {"id":{"name":"spr_georgepause","path":"sprites/spr_georgepause/spr_georgepause.yy",},},

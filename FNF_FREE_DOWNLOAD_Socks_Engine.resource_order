@@ -220,6 +220,7 @@
     {"name":"scr_song6","order":12,"path":"scripts/scr_song6/scr_song6.yy",},
     {"name":"spr_georgeleftalt","order":5,"path":"sprites/spr_georgeleftalt/spr_georgeleftalt.yy",},
     {"name":"spr_georgedownalt","order":6,"path":"sprites/spr_georgedownalt/spr_georgedownalt.yy",},
+    {"name":"spr_uinotesFlashGaw","order":17,"path":"sprites/spr_uinotesFlashGaw/spr_uinotesFlashGaw.yy",},
     {"name":"spr_georgeupalt","order":7,"path":"sprites/spr_georgeupalt/spr_georgeupalt.yy",},
     {"name":"spr_georgerightalt","order":8,"path":"sprites/spr_georgerightalt/spr_georgerightalt.yy",},
     {"name":"spr_georgepause","order":9,"path":"sprites/spr_georgepause/spr_georgepause.yy",},
