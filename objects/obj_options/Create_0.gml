@@ -28,3 +28,5 @@ pallet = 1;
 changing_pallet = false
 
 description = "lol"
+description_temp = ":3" //silly solution
+cout = 0;

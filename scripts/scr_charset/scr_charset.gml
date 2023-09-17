@@ -250,9 +250,10 @@ function scr_charset(argument0, argument1) {
 	        anim[RIGHTALT]	=spr_stradrightalt
 	        pause			=spr_stradpause
 	    break;
-	    case 2: //
+	    case 2: //cyan
 	        idle[0]			=spr_cyanidle
 	        ayy				=spr_cyanayy
+			bad_ayy_snd		=snd_cyanayy
 	        anim[LEFT]		=spr_cyanleft
 	        anim[DOWN]		=spr_cyandown
 	        anim[UP]		=spr_cyanup
@@ -281,6 +282,7 @@ function scr_charset(argument0, argument1) {
 	    case 4: //buddy
 	        idle[0]			=spr_buddyidle
 	        ayy				=spr_buddyayy
+			bad_ayy_snd		=snd_buddyayy
 	        anim[LEFT]		=spr_buddyleft
 	        anim[DOWN]		=spr_buddydown
 	        anim[UP]		=spr_buddyup

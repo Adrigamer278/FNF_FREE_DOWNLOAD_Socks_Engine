@@ -11,5 +11,4 @@ draw_set_halign(fa_left)
 //dude n' lady
 draw_sprite_ext(spr_ladyfacec,ranface,50,room_height-60,1,1,0,image_blend,1)
 draw_sprite_ext(spr_dudefacec,ranface,room_width-60,room_height-50,1,1,0,image_blend,1)
-draw_sprite_ext(spr_aykotab, 0,room_width-214,room_height-50,1,1,0,image_blend,1)
 

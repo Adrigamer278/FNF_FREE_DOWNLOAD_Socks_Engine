@@ -31,7 +31,6 @@ else
 //bool var
 var checkNoteGoesOffScreen = obj_stats.downscroll ? y >= 500 : y <= -60;
 
-
 //note goes off screen
 if (checkNoteGoesOffScreen && (type=1 || type=2 || type=8 || type=9) && note >= obj_song.notes) {
 	instance_destroy();
@@ -86,14 +85,7 @@ if note < obj_song.notes { //enemy
             case 7:
                 obj_badguy.sprite_index=obj_badguy.ayy
                 obj_badguy.hit[note]=true
-                switch(obj_badguy.ayy) {
-                    case spr_cyanayy:
-                        audio_play_sound(snd_cyanayy,9999,false)
-                    break;
-                    case spr_buddyayy:
-                        audio_play_sound(snd_buddyayy,9999,false)
-                    break;
-                }
+				audio_play_sound(obj_badguy.bad_ayy_snd, 99999, false)	
             break;
             default:
                 obj_badguy.sprite_index=obj_badguy.anim[((note)+chungy)]

@@ -117,24 +117,6 @@ function scr_textboxcoloring() {
 	        namecolor2=color2
 	        name="Gunk"
 	    break;
-		case "AT":
-	        font=fnt_office
-	        color1 = make_colour_rgb(77,54,97)
-	        color2 = make_colour_rgb(89,75,124)
-	        namefont=fnt_office
-	        namecolor1=color1
-	        namecolor2=color2
-	        name="Iko-Tab"
-	    break;
-		case "m":
-	        font=fnt_comic1b
-	        color1 = c_white
-	        color2 = c_black
-	        namefont=fnt_comic1b
-	        namecolor1=color1
-	        namecolor2=color2
-	        name="Myrick"
-	    break;
 	    default:
 	        font=fnt_comic1b
 	        color1 = make_colour_rgb(255,255,255)

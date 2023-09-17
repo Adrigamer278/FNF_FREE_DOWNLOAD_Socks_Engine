@@ -32,8 +32,8 @@ if string_copy(keys,string_length(keys)-6,string_length(keys))="rainbow" {
     string_delete(keys,0,6)
 }
 
-if string_copy(keys,string_length(keys)-3,string_length(keys))="fnaf" {
-    obj_stats.weekgoing="fnaf"
+if string_copy(keys,string_length(keys)-4,string_length(keys))="angel" {
+    obj_stats.weekgoing="angel"
     obj_stats.freeplay=false
     instance_create(0,0,obj_fadeout)
     obj_fadeout.roomgo=rm_stage

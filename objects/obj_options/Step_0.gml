@@ -6,9 +6,11 @@ else
 if menu_state == MENU_STATE.normal {
 //moving cursor
     if keyboard_check_pressed(vk_up) or gamepad_button_check_pressed(0,gp_padu){
+		cout = 0;
         sel--
     }
     if keyboard_check_pressed(vk_down) or gamepad_button_check_pressed(0,gp_padd) {
+		cout = 0;
         sel++
     }
     sel=clamp(sel,0,sels)
@@ -85,6 +87,9 @@ if menu_state == MENU_STATE.normal {
 		if(keyboard_check_pressed(vk_right) && obj_stats.in_game_fps < 240)
 			obj_stats.in_game_fps += 10;
 	}
+	
+	if(alarm[0] < 0)
+		alarm[0] = 1
 //now get out
     if (keyboard_check_pressed(ord("X")) or keyboard_check_pressed(vk_shift) or keyboard_check_pressed(vk_escape) or gamepad_button_check_pressed(0,gp_face2)) {
         instance_create(0,0,obj_fadeout)
@@ -106,32 +111,33 @@ if  menu_state == MENU_STATE.mapping_keys { //maping keys
 wait--
 wait=clamp(wait,0,10)
 
+
 #region descriptionLOL
 switch(sel)
 {
 	case 0:
-		description = "Your Game Could Be Turned Upside Down"
+		description_temp = "Your Game Could Be Turned Upside Down"
 	break;
 	case 1:
-		description = "Cheat GHOST TAPPING"
+		description_temp = "Cheater"
 	break;
 	case 2:
-		description = "Let Me Play How I Want"
+		description_temp = "Let Me Play How I Want"
 	break;
 	case 3:
-		description = "Man These Note Are Awesome!!!"
+		description_temp = "Man These Note Are Awesome!!!"
 	break;
 	case 4:
-		description = "Change Yourself"
+		description_temp = "Change Yourself"
 	break;
 	case 5:
-		description = "More fps - more fun to play"
+		description_temp = "More fps - more fun to play"
 	break;
 	case 6:
-		description = "Make your Game BIG"
+		description_temp = "Make your Game BIG"
 	break;
 	case 7:
-		description = "THIS IS SO STUPIT"
+		description_temp = "THIS IS SO STUPIT"
 	break;
 }
 #endregion

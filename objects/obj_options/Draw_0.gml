@@ -19,6 +19,10 @@ for (i=0;i<=sels;i++) {
 	for (xx=0;xx<3;xx++) {
 		for (yy=0;yy<3;yy++) {
 			draw_text(35+xx-1,((195+yy-1)+(25*i))+y,string_hash_to_newline((options[i])))
+			
+			draw_set_halign(fa_center)
+			draw_text(room_height/2+xx-1, room_width/2 + 130 + yy - 1, description)
+			draw_set_halign(fa_left)
 		}
 	}
 	//grey out text
