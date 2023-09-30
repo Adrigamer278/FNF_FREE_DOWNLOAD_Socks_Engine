@@ -388,8 +388,6 @@ function scr_songint(argument0) {
 	
 	if !file { return action_message("Song chart not found!") }
 	
-	show_debug_message(fileExt)
-	
 	//Check if this song exist in CHART 900 format
 	if(fileExt = ".swows")
 	{
