@@ -143,9 +143,9 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
   ],
   "IncludedFiles": [
-    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"angel.ogg","CopyToMask":-1,"filePath":"datafiles/audio",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"put audio here.txt","CopyToMask":-1,"filePath":"datafiles/audio",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"randomtext.txt","CopyToMask":-1,"filePath":"datafiles/data",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"(json) mus_channelsurf.json","CopyToMask":-1,"filePath":"datafiles/songs",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"mus_breakitdown.swows","CopyToMask":9223372036854775807,"filePath":"datafiles/songs",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"mus_channelsurf.swows","CopyToMask":9223372036854775807,"filePath":"datafiles/songs",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"mus_frostbytep1.swows","CopyToMask":9223372036854775807,"filePath":"datafiles/songs",},

@@ -1,4 +1,5 @@
-var keys=keyboard_string
+var keys=(os_browser == browser_not_a_browser && os_type != os_operagx) ? keyboard_string : string_lower(keyboard_string); // gx target does uppercase always (for some reason)
+
 if string_copy(keys,string_length(keys)-4,string_length(keys))="stink" {
     audio_play_sound(snd_unlockall,9999,false)
     var unlock

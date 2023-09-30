@@ -9,6 +9,7 @@ function scr_jsonImport(_file_name, _func)
 		{
 			_json_str += file_text_read_string(_file);
 			file_text_readln(_file);
+			//_json_str += chr(10)+chr(13);
 		}
 		file_text_close(_file);
 		return script_execute(_func, _json_str);

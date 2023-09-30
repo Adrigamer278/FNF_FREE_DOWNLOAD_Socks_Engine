@@ -371,16 +371,27 @@ function scr_songint(argument0) {
 	        obj_badguy.baddie=0
 	}
 	
-	//song
-	if(audio_get_name(song) != "<undefined>")
-		filename=(string(working_directory)+string("songs\\")+string(audio_get_name(song))+string(".swows"))
-	else
-		filename=(string(working_directory)+string("songs\\")+global.custom_audio_filenames+string(".swows"))
-		
-	//jsonname=(string(working_directory)+string("songs\\")+string(audio_get_name(song))+string(".json"))
+	fileExt = ".swows"
+	
+	var searchFile = function() {
+		if(audio_get_name(song) != "<undefined>")
+			filename=(string(working_directory)+string("songs\\")+string(audio_get_name(song))+string(fileExt))
+		else
+			filename=(string(working_directory)+string("songs\\")+global.custom_audio_filenames+string(fileExt))
+	
+		if file_exists(filename) { file = file_text_open_read(filename) }
+	}
+	
+	searchFile();
+	
+	if !file_exists(filename) { fileExt = ".json"; searchFile() }
+	
+	if !file { return action_message("Song chart not found!") }
+	
+	show_debug_message(fileExt)
 	
 	//Check if this song exist in CHART 900 format
-	if(file_exists(filename))
+	if(fileExt = ".swows")
 	{
 		//filename=(string(working_directory)+string("/songs/mus_rainbowtylenol.swows"))
 		file = file_text_open_read(filename)
@@ -472,6 +483,223 @@ function scr_songint(argument0) {
 		    }
 		}
 		file_text_close(file)
+	}
+	else if (fileExt = ".json") {
+		
+		var parsedSong=scr_jsonImport(filename, json_parse)
+		var songData=parsedSong.song
+		show_debug_message(songData.bpm)
+		
+		obj_song.song=song
+		obj_song.bpm=songData.bpm
+		obj_song.notespeed=songData.speed*0.4
+		obj_song.notes=4 // extra keys later
+		
+		var funnySpace;
+		if(obj_stats.funnyNotePos)
+			funnySpace = 165
+		else
+			funnySpace = 0
+		
+		var strumY = 48;
+		if obj_stats.downscroll=true {
+			strumY = 352;
+		}
+		
+		var dingus;
+		var spacex; //how far apart are the notes: left and right
+		var spacey; //how far apart are the notes: up and down 
+		var apartb; //how far on the screen the badguys notes are
+		var apartg; //how far on the screen your notes are
+		//note spacing
+		if notes>4 {
+		    spacex=29
+		    spacey=29
+		    spaceyd=352
+		    apartg=234
+		    apartb=32
+		} else {
+		    spacex=44
+		    spacey=48
+		    spaceyd=352
+		    apartg=234
+		    apartb=32
+		}
+		
+		// camera focus
+		var createCameraChange = function(strumT,dudeCam) {
+			var posFromStrum=(strumT/60*obj_song.bpm*4)*(48*obj_song.notespeed)
+			
+			if obj_stats.downscroll=true {
+				posFromStrum = -posFromStrum;
+			}
+			
+			dingus = instance_create(0,posFromStrum,obj_note)
+		    dingus.note = 1
+		    
+			// no both cam....
+			// type for it is 6 btw
+			if (dudeCam) {
+				dingus.type = 4;
+			} else {
+				dingus.type = 5;
+			}
+			
+		}
+		
+		// create strums (this is why rainbow doesnt have left,down,up strums, there arent notes on that lane so game doesnt spawn them)
+		for (bb=0; bb<obj_song.notes*2; bb++) {
+			var strum
+			 if bb<obj_song.notes {
+		         strum = instance_create(apartb+(bb*spacex) - funnySpace,strumY,obj_uinotes)
+		     } else {
+		         strum = instance_create(apartg+((bb-obj_song.notes)*spacex) + funnySpace,strumY,obj_uinotes)
+		     }
+			strum.note=bb
+		}
+			
+		var event=0
+		// note: events are not sorted by strumtime, so have them sorted on the json already
+		
+		// wrapping for event json support
+		if variable_struct_exists(songData,"notes") {
+			var strumTime = 0;
+			var curBPM = songData.bpm
+		
+			for (sectionnum=0; sectionnum<array_length(songData.notes); sectionnum++) {			
+				var sectionData = songData.notes[sectionnum]
+			
+				var sectionBpm = variable_struct_get(sectionData,"changeBPM") ? sectionData.bpm : curBPM;
+			
+				curBPM = sectionBpm;
+			
+				var sectionBeats = (variable_struct_get(sectionData,"sectionBeats") != undefined) ? variable_struct_get(sectionData,"sectionBeats") : 4;
+				strumTime += sectionBeats * (1000 * 60 / curBPM);
+			
+				createCameraChange(strumTime,sectionData.mustHitSection);
+			
+				for (noteIndex=0; noteIndex<array_length(sectionData.sectionNotes); noteIndex++) {
+					var noteData = sectionData.sectionNotes[noteIndex]
+				
+					var sTime=noteData[0]/1000
+					var noteNum=noteData[1]%(obj_song.notes*2) // tricky compliance / old note types
+					var Length=noteData[2]
+					var noteType= array_length(noteData) >= 4 ? noteData[3] : undefined;
+				
+					if sectionData.mustHitSection == true {
+						if noteNum >= obj_song.notes { noteNum= noteNum - obj_song.notes } else { noteNum= noteNum + obj_song.notes }
+					}
+				
+					var posFromStrum=(sTime/60*obj_song.bpm*4)*(48*obj_song.notespeed)
+					if obj_stats.downscroll=true {
+						posFromStrum = -posFromStrum;
+					}
+					
+					// convert to fnffd stuff (please change to use strumtime stuff later!!)
+					// strumFromPos = 60*(yPos/(obj_song.bpm*4*48*obj_song.notespeed))*1000
+					// (if you want to add modcharts ofc, simple ones like moving the strums will work but drunk effects and all may not))
+				
+					if noteNum<obj_song.notes {
+						dingus = instance_create(apartb+(noteNum*spacex) - funnySpace,strumY+posFromStrum,obj_note)
+			        } else {
+						dingus = instance_create(apartg+((noteNum-obj_song.notes)*spacex) + funnySpace,strumY+posFromStrum,obj_note)
+			        }
+			        dingus.note = noteNum
+		       
+					dingus.type = 1
+				
+					if noteType = "Hurt Note" {
+						dingus.type = 3
+					} else if noteType = "GF Sing" {
+						dingus.type = 2 // buddy
+					} else if noteNum = -1 {
+						// event note ig
+						
+						if noteType = "Event" {
+							dingus.type = 10
+						} else if noteType = "Hey!" {
+							dingus.type = 7
+						}
+						Length = 0;
+					} 
+				
+			        //event notes
+				
+			        if dingus.type=10 {
+			            dingus.event=event
+			            event++
+					}
+				
+					if Length>0 {
+						var stepCrochet=(((60 / obj_song.bpm))/4) // todo: replace with conductor ig
+						sTime = sTime + stepCrochet/4
+						for (sus=0; sus<((Length/(stepCrochet*1000))-1); sus++) {
+							sTime = sTime + stepCrochet // + stepCrochet
+							var posFromStrum=(sTime/60*obj_song.bpm*4)*(48*obj_song.notespeed)
+							
+							if obj_stats.downscroll=true {
+								posFromStrum = -posFromStrum;
+							}
+							
+							if noteNum<obj_song.notes {
+								dingus = instance_create(apartb+(noteNum*spacex) - funnySpace,strumY+posFromStrum,obj_note)
+					        } else {
+								dingus = instance_create(apartg+((noteNum-obj_song.notes)*spacex) + funnySpace,strumY+posFromStrum,obj_note)
+					        }
+					        dingus.note = noteNum
+		       
+							dingus.type = 8
+						
+							if noteType = "Hurt Note" {
+								dingus.type = 3
+							} else if noteType = "GF Sing" {
+								dingus.type = 9 // sustain buddy
+							}
+						}
+					}
+				}
+			}	
+		}
+		
+		if variable_struct_exists(songData,"events") {
+			for (eventSec=0; eventSec<array_length(songData.events); eventSec++) {	
+				var eventData = songData.events[eventSec]
+			
+				var sTime=eventData[0]/1000
+				
+				var posFromStrum=(sTime/60*obj_song.bpm*4)*(48*obj_song.notespeed)
+				
+				if obj_stats.downscroll=true {
+					posFromStrum = -posFromStrum;
+				}
+				
+				for (eventInd=0; eventInd<array_length(eventData[1]); eventInd++) {
+					var eventData = eventData[1][eventInd]
+				
+					var eventName=eventData[0]
+					
+					var value1=eventData[1]
+					var value2=eventData[2]
+				
+					var noteNum = 6;
+				
+					dingus = instance_create(apartg+((noteNum-obj_song.notes)*spacex) + funnySpace,strumY+posFromStrum,obj_note)
+			        dingus.note = noteNum
+					
+					if eventName = "Event" {
+						dingus.type = 10
+					} else if eventName = "Hey!" {
+						dingus.type = 7
+					}
+		       
+					if dingus.type = 10 {
+						dingus.event=event
+						event++
+					}
+				}
+			}
+		}
+		
 	}
 	/*
 	else
